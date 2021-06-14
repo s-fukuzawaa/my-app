@@ -7,10 +7,8 @@ function Joke(props){
             <p>
                 {props.question}
             </p>
-            <h2>
-                {if(props.punchLine!==null&&props.punchLine!==""){
-                    props.punchLine
-                }}
+            <h2 style={{display: !props.punchLine && "none"}}>
+                PunchLine: {props.punchLine}
             </h2>
         </div>
     )
