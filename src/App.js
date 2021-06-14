@@ -1,42 +1,12 @@
-import React, {Component} from "react"
+import React from "react"
 
-class App extends Component{
-    constructor(){
-        super()
-        this.state={
-            loading: false,
-            character:{}
+import Form from "./FormContainer"
 
-        }
-    }
-
-    componentDidMount(){
-        this.setState({
-            loading:true
-        })
-        fetch("https://swapi.dev/api/people/1")
-            .then(response=>response.json())
-            .then(data=>{
-                this.setState({
-                    character:data
-                })
-            });
-        this.setState({
-            loading:false
-        })
-    }
-
-
-    
-    render(){
-        const text=this.state.loading? "loading...": this.state.character.name
-        return (
-            <div>
-
-                {text}
-            </div>
-        )
-    }
+function App(){
+    return(
+        <Form/>
+    )
 }
+
 
 export default App
