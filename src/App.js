@@ -1,38 +1,42 @@
-import React from "react"
+import React, {Component} from "react"
 
-
-class App extends React.Component{
+class App extends Component{
     constructor(){
-        super();
+        super()
         this.state={
-            isLogged:false
+            loading: false,
+            character:{}
+
         }
-        this.logIn=this.logIn.bind(this)
     }
 
     componentDidMount(){
-
-    }
-
-    logIn(){
-        this.setState(prevState=>{
-            return {
-                isLogged:!prevState.isLogged
-            }
+        this.setState({
+            loading:true
+        })
+        fetch("https://swapi.dev/api/people/1")
+            .then(response=>response.json())
+            .then(data=>{
+                this.setState({
+                    character:data
+                })
+            });
+        this.setState({
+            loading:false
         })
     }
 
+
+    
     render(){
+        const text=this.state.loading? "loading...": this.state.character.name
         return (
             <div>
-                <button onClick={this.logIn}>{this.state.isLogged===true? "LoggedIn":
-                "LoggedOut"}</button>
-                {this.state.isLogged===true? <h1>Logged in</h1>:
-                <h1> Logged out</h1>}
+
+                {text}
             </div>
         )
     }
 }
-
 
 export default App

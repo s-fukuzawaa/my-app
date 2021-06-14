@@ -17,13 +17,13 @@ class App2 extends Component{
 
     handleChange(id){
         this.setState(prevState=>{
-            const mapped=prevState.toDos.map(item=>{
+            const mapped=this.state.toDos.map(item=>{
                 if(item.id===id){
-                    item.completed=!item.completed;
+                    item.completed=!item.completed
                 }
-                return item
+                return item;
             })
-            return{
+            return {
                 toDos:mapped
             }
         })
